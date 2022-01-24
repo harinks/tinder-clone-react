@@ -16,6 +16,7 @@ function TinderCards() {
 
     const swiped = (direction, nameToDelete) => {
         console.log("removing:" + nameToDelete);
+        // console.log("direction:" + direction);
         //setLastDirection(direction);
     }
 
@@ -28,7 +29,7 @@ function TinderCards() {
                 {people.map((person) => (
                     <TinderCard className='swipe'
                         key={person.name}
-                        preventSwipe={["left", "right"]}
+                        preventSwipe={["up", "down"]}
                         onSwipe={(dir) => swiped(dir, person.name)}
                         onCardLeftScreen={() => outOfFrame(person.name)}>
 
