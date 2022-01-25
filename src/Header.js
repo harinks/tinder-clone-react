@@ -6,13 +6,13 @@ import ForumIcon from '@mui/icons-material/Forum';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Header(props) {
+function Header({ backButton }) {
 
     const navigate = useNavigate();
     return (
         <div className='header'>
-            {props.backButton ? (
-                <IconButton onClick={() => navigate('/')}>
+            {backButton ? (
+                <IconButton onClick={() => navigate(backButton, { replace: 'true' })}>
                     <ArrowBackIosNewIcon fontSize='large' className='header_icon' />
                 </IconButton>
             ) : (
@@ -20,10 +20,12 @@ function Header(props) {
                     <PersonIcon fontSize='large' className='header_icon' />
                 </IconButton>
             )}
-            <img className='header_logo'
-                src='https://1000logos.net/wp-content/uploads/2018/07/Tinder-logo.png'
-                alt=''
-            />
+            <Link to='/'>
+                <img className='header_logo'
+                    src='https://1000logos.net/wp-content/uploads/2018/07/Tinder-logo.png'
+                    alt=''
+                />
+            </Link>
             <Link to='/chat'>
                 <IconButton>
                     <ForumIcon fontSize='large' className='header_icon' />
