@@ -3,6 +3,7 @@ import './ChatScreen.css';
 import Avatar from '@mui/material/Avatar';
 
 function ChatScreen() {
+    const [input, setInput] = useState('');
     const [messages, setMessage] = useState([
         {
             name: 'sarah',
@@ -18,6 +19,13 @@ function ChatScreen() {
             message: "hello hi"
         }
     ])
+
+    const handleSend = e => {
+        e.preventDefault();
+
+        setMessage([...messages, {message: input}]);
+        setInput('');
+    }
 
     return <div className='chatScreen'>
         <p className='chatScreen_timestamp'> YOU MATCHED WITH SARAH ON 10/01/2022</p>
@@ -38,9 +46,12 @@ function ChatScreen() {
             )
         )}
         <form className='chatScreen_input'>
-            <input className='chatScreen_inputfield'
+            <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className='chatScreen_inputfield'
                 type="text" placeholder='Type a message...' />
-            <button className='chatScreen_button'>SEND</button>
+            <button onClick={handleSend} type='submit' className='chatScreen_button'>SEND</button>
         </form>
     </div>;
 }
